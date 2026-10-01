@@ -1,0 +1,40 @@
+name: TaskOrbit CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Backend
+      - name: Install Backend Dependencies
+        working-directory: Backend
+        run: npm install
+
+      - name: Check Backend Syntax
+        working-directory: Backend
+        run: node --check server.js
+
+      # Frontend
+      - name: Install Frontend Dependencies
+        working-directory: Frontend
+        run: npm install
+
+      - name: Build Frontend
+        working-directory: Frontend
+        run: npm run build
