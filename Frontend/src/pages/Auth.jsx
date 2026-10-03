@@ -48,7 +48,7 @@ export default function Auth({ mode }) {
         {error && <div className="error-box">{error}</div>}
 
         <form onSubmit={submit}>
-          {isRegister && <label>Your name<input name="name" value={form.name} onChange={change} placeholder="Ishank" required /></label>}
+          {isRegister && <label>Your name<input name="name" value={form.name} onChange={change} placeholder="kritika" required /></label>}
           <label>Email address<input name="email" type="email" value={form.email} onChange={change} placeholder="you@example.com" required /></label>
           <label>Password<input name="password" type="password" value={form.password} onChange={change} placeholder="Minimum 6 characters" minLength="6" required /></label>
           <button className="button primary full" disabled={loading}>{loading ? "Please wait..." : isRegister ? "Create account" : "Sign in"}</button>
