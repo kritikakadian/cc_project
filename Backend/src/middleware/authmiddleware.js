@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 function auth (req, res, next) {
     try {
-        // Header se token lo
+        
         const authHeader = req.header("Authorization");
 
         if (!authHeader) {
@@ -12,7 +12,7 @@ function auth (req, res, next) {
             });
         }
         
-        // Extract token from "Bearer <token>" format
+     
         const token = authHeader.startsWith("Bearer ") 
             ? authHeader.slice(7) 
             : authHeader;
@@ -31,3 +31,5 @@ function auth (req, res, next) {
 }
 
 module.exports = auth;
+
+

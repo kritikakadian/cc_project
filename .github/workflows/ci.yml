@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: 22
 
-      # Backend
+      
       - name: Install Backend Dependencies
         working-directory: Backend
         run: npm install
@@ -30,7 +30,6 @@ jobs:
         working-directory: Backend
         run: node --check server.js
 
-      # Frontend
       - name: Install Frontend Dependencies
         working-directory: Frontend
         run: npm install
