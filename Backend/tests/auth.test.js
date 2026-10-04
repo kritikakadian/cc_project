@@ -2,15 +2,25 @@ require("dotenv").config();
 
 const request = require("supertest");
 const mongoose = require("mongoose");
+const { MongoMemoryServer } = require("mongodb-memory-server");
 const app = require("../app");
-const db = require("../src/config/database");
+
+let mongoServer;
 
 beforeAll(async () => {
-    await db();
+    mongoServer = await MongoMemoryServer.create();
+
+    const mongoUri = mongoServer.getUri();
+
+    await mongoose.connect(mongoUri);
 });
 
 afterAll(async () => {
     await mongoose.connection.close();
+
+    if (mongoServer) {
+        await mongoServer.stop();
+    }
 });
 
 describe("Auth API", () => {
