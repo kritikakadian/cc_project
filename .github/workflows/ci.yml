@@ -12,6 +12,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      MONGO_URI: ${{ secrets.MONGO_URI }}
+      MONGO_DB_NAME: ${{ secrets.MONGO_DB_NAME }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -29,7 +33,7 @@ jobs:
         working-directory: Backend
         run: node --check server.js
 
-        - name: Run Backend Tests
+      - name: Run Backend Tests
         working-directory: Backend
         run: npm test
 
